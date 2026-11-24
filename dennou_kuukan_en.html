@@ -21,7 +21,7 @@
 		a:visited{color:#cc66ff}
 
 		.page-wrapper{
-			width:780px;margin:0 auto;
+			width:90%;max-width:1200px;margin:0 auto;box-sizing:border-box;
 			border:3px ridge #6666cc;
 			background:#000044;
 			box-shadow:0 0 40px rgba(102,102,255,0.3);
@@ -79,10 +79,11 @@
 		}
 		.marquee-inner{
 			display:inline-block;white-space:nowrap;
+			padding-left:100%;
 			animation:marquee-scroll 18s linear infinite;
 			color:#ffff66;font-size:12px;
 		}
-		@keyframes marquee-scroll{0%{transform:translateX(780px)}100%{transform:translateX(-100%)}}
+		@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 
 		/* === TABLE LAYOUT === */
 		table.main-layout{width:100%;border-collapse:collapse}
