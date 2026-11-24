@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>★☆ ネオ東京電脳空間 ☆★ Neo Tokyo Cyberspace</title>
+	<style>
+		html,body{height:100%;margin:0;overflow:hidden}
+		body{
+			font-family:"MS PGothic","MS Gothic","Osaka",sans-serif;
+			display:flex;align-items:center;justify-content:center;
+			background-color:#000022;
+			background-image:
+				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='80' height='80' fill='%23000022'/%3E%3Ccircle cx='12' cy='8' r='0.8' fill='%23fff' opacity='0.6'/%3E%3Ccircle cx='55' cy='22' r='0.5' fill='%23ccf' opacity='0.4'/%3E%3Ccircle cx='30' cy='50' r='1' fill='%23fff' opacity='0.3'/%3E%3Ccircle cx='70' cy='65' r='0.6' fill='%23ffc' opacity='0.5'/%3E%3Ccircle cx='5' cy='70' r='0.4' fill='%23fff' opacity='0.3'/%3E%3Ccircle cx='45' cy='5' r='0.7' fill='%23ccf' opacity='0.4'/%3E%3Ccircle cx='65' cy='40' r='0.5' fill='%23ffc' opacity='0.35'/%3E%3C/svg%3E");
+			color:#fff;
+			cursor:crosshair;
+		}
+
+		.splash{
+			text-align:center;
+			border:3px ridge #6666cc;
+			background:linear-gradient(180deg,#0a0022,#110044,#0a0022);
+			padding:30px 50px;
+			box-shadow:0 0 60px rgba(102,102,255,0.3);
+		}
+
+		.star-line{
+			color:#ffcc00;font-size:10px;letter-spacing:3px;margin:6px 0;
+		}
+
+		h1{
+			font-size:38px;margin:10px 0 4px 0;
+			background:linear-gradient(180deg,#ff66cc,#ff99ff,#ffccff,#ff99ff,#ff66cc);
+			-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+			background-clip:text;
+			filter:drop-shadow(0 0 8px #ff66ff);
+			letter-spacing:4px;
+		}
+		.subtitle{font-size:12px;color:#cc99ff;letter-spacing:3px;margin-bottom:4px}
+		.subtitle2{font-size:11px;color:#9966cc;letter-spacing:2px;margin-bottom:20px}
+
+		.lang-select{
+			display:flex;gap:40px;justify-content:center;align-items:center;
+			margin:24px 0 16px 0;
+		}
+
+		.lang-btn{
+			display:block;text-decoration:none;color:#fff;
+			text-align:center;
+			transition:transform 0.2s;
+		}
+		.lang-btn:hover{transform:scale(1.1)}
+		.lang-btn:hover .flag-label{color:#ffff00}
+
+		/* CSS-only flags */
+		.flag{
+			width:100px;height:66px;
+			border:2px ridge #9966ff;
+			margin:0 auto 8px auto;
+			overflow:hidden;
+			box-shadow:0 0 12px rgba(102,102,255,0.4);
+			position:relative;
+		}
+
+		/* Japanese flag */
+		.flag-jp{background:#fff}
+		.flag-jp::after{
+			content:"";position:absolute;
+			width:28px;height:28px;border-radius:50%;
+			background:#bc002d;
+			top:50%;left:50%;transform:translate(-50%,-50%);
+		}
+
+		/* American flag */
+		.flag-us{
+			background:repeating-linear-gradient(
+				180deg,
+				#bf0a30 0px,#bf0a30 5px,
+				#fff 5px,#fff 10px
+			);
+		}
+		.flag-us::before{
+			content:"";position:absolute;
+			width:40px;height:35px;
+			background:#002868;
+			top:0;left:0;
+			z-index:1;
+		}
+		.flag-us::after{
+			content:"✦ ✦ ✦ ✦\\A✦ ✦ ✦\\A✦ ✦ ✦ ✦\\A✦ ✦ ✦";
+			white-space:pre;
+			position:absolute;
+			top:2px;left:2px;
+			font-size:5px;
+			color:#fff;
+			line-height:7px;
+			letter-spacing:1px;
+			z-index:2;
+		}
+
+		.flag-label{
+			font-size:13px;font-weight:bold;
+			color:#cc99ff;
+			transition:color 0.2s;
+		}
+		.flag-sublabel{
+			font-size:10px;color:#666699;margin-top:2px;
+		}
+
+		.enter-text{
+			font-size:10px;color:#9966cc;margin-top:6px;
+		}
+
+		/* Animations */
+		@keyframes sparkle{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.2)}}
+		.sparkle{animation:sparkle 1.5s ease-in-out infinite}
+		.sparkle2{animation:sparkle 1.5s ease-in-out 0.5s infinite}
+
+		@keyframes rainbow{
+			0%{color:#ff0000}14%{color:#ff9900}28%{color:#ffff00}
+			42%{color:#00ff00}57%{color:#0099ff}71%{color:#6633ff}
+			85%{color:#ff00ff}100%{color:#ff0000}
+		}
+		.rainbow{animation:rainbow 3s linear infinite}
+
+		@keyframes pulse-glow{
+			0%,100%{box-shadow:0 0 12px rgba(102,102,255,0.4)}
+			50%{box-shadow:0 0 20px rgba(255,102,255,0.6)}
+		}
+		.flag{animation:pulse-glow 2s ease-in-out infinite}
+
+		.or-text{color:#666699;font-size:14px;font-weight:bold}
+
+		.bottom-info{
+			font-size:9px;color:#666699;margin-top:16px;
+			border-top:1px dotted #333366;padding-top:8px;
+		}
+
+		/* Cursor trail */
+		.trail-star{
+			position:fixed;pointer-events:none;font-size:12px;
+			color:#ffcc00;z-index:9999;opacity:0;
+		}
+	</style>
+</head>
+<body>
+
+<div class="trail-star" id="t0">✦</div>
+<div class="trail-star" id="t1">✧</div>
+<div class="trail-star" id="t2">✦</div>
+<div class="trail-star" id="t3">✧</div>
+<div class="trail-star" id="t4">✦</div>
+
+<div class="splash">
+	<div class="star-line">★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★</div>
+
+	<h1>
+		<span class="sparkle">☆</span>
+		ネオ東京電脳空間
+		<span class="sparkle2">☆</span>
+	</h1>
+	<div class="subtitle">～ N E O &nbsp; T O K Y O &nbsp; C Y B E R S P A C E ～</div>
+	<div class="subtitle2">Since 1999.08.15</div>
+
+	<div style="font-size:13px;color:#ffccff;margin-bottom:4px">
+		<span class="rainbow">★ 言語を選択してください / Select Language ★</span>
+	</div>
+
+	<div class="lang-select">
+		<a href="dennou_kuukan_jp.html" class="lang-btn">
+			<div class="flag flag-jp"></div>
+			<div class="flag-label">日本語</div>
+			<div class="flag-sublabel">Japanese</div>
+		</a>
+
+		<div class="or-text">／</div>
+
+		<a href="dennou_kuukan_en.html" class="lang-btn">
+			<div class="flag flag-us"></div>
+			<div class="flag-label">English</div>
+			<div class="flag-sublabel">英語</div>
+		</a>
+	</div>
+
+	<div class="enter-text">
+		☆ クリックして入場 / Click to Enter ☆
+	</div>
+
+	<div class="star-line">★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★</div>
+
+	<div class="bottom-info">
+		Best viewed with Internet Explorer 4.0+ / Netscape Navigator 4.0+<br>
+		Resolution: 800×600 | JavaScript: ON<br>
+		Copyright &copy; 1999 ネオ東京電脳空間. All Rights Reserved.
+	</div>
+</div>
+
+<script>
+(function(){
+	var stars=[];
+	for(var i=0;i<5;i++) stars.push(document.getElementById('t'+i));
+	var positions=[];
+	for(var i=0;i<5;i++) positions.push({x:0,y:0});
+	var mx=0,my=0;
+	document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY});
+	function animate(){
+		var px=mx,py=my;
+		for(var i=0;i<stars.length;i++){
+			var s=stars[i],p=positions[i];
+			p.x+=(px-p.x)*0.3;p.y+=(py-p.y)*0.3;
+			s.style.left=p.x+'px';s.style.top=p.y+'px';
+			s.style.opacity=1-(i*0.2);s.style.fontSize=(12-i*2)+'px';
+			var c=['#ffcc00','#ff99ff','#99ccff','#ffcc00','#ff99ff'];
+			s.style.color=c[i];px=p.x;py=p.y;
+		}
+		requestAnimationFrame(animate);
+	}
+	animate();
+})();
+</script>
+
+</body>
+</html>
