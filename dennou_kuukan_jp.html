@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>★☆ ネオ東京電脳空間 ☆★ ～ようこそ～</title>
+	<style>
+		html,body{height:100%;margin:0;overflow-x:hidden;}
+		body{
+			font-family:"MS PGothic","MS Gothic","Osaka",sans-serif;
+			font-size:13px;color:#fff;cursor:crosshair;
+			background-color:#000033;
+			background-image:
+				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='80' height='80' fill='%23000033'/%3E%3Ccircle cx='12' cy='8' r='0.8' fill='%23fff' opacity='0.6'/%3E%3Ccircle cx='55' cy='22' r='0.5' fill='%23ccf' opacity='0.4'/%3E%3Ccircle cx='30' cy='50' r='1' fill='%23fff' opacity='0.3'/%3E%3Ccircle cx='70' cy='65' r='0.6' fill='%23ffc' opacity='0.5'/%3E%3Ccircle cx='5' cy='70' r='0.4' fill='%23fff' opacity='0.3'/%3E%3Ccircle cx='45' cy='5' r='0.7' fill='%23ccf' opacity='0.4'/%3E%3Ccircle cx='65' cy='40' r='0.5' fill='%23ffc' opacity='0.35'/%3E%3C/svg%3E");
+		}
+		a{color:#ff99ff;text-decoration:none}
+		a:hover{color:#ffff00;text-decoration:underline}
+		a:visited{color:#cc66ff}
+		.page-wrapper{
+			width:780px;margin:0 auto;border:3px ridge #6666cc;
+			background:#000044;box-shadow:0 0 40px rgba(102,102,255,0.3);
+		}
+		.top-banner{
+			background:linear-gradient(180deg,#110033,#220055,#110033);
+			border-bottom:3px ridge #9966cc;text-align:center;
+			padding:10px 0 6px 0;position:relative;
+		}
+		.top-banner h1{
+			font-size:32px;margin:0;
+			background:linear-gradient(180deg,#ff66cc,#ff99ff,#ffccff,#ff99ff,#ff66cc);
+			-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+			background-clip:text;filter:drop-shadow(0 0 6px #ff66ff);
+			letter-spacing:4px;font-weight:bold;
+		}
+		.top-banner .subtitle{font-size:11px;color:#cc99ff;letter-spacing:4px;margin-top:2px}
+		.star-line{color:#ffcc00;font-size:10px;letter-spacing:3px;margin:4px 0}
+
+		/* === LANG SWITCH === */
+		.lang-switch{position:absolute;top:8px;right:12px}
+		.lang-flag{
+			display:inline-block;width:28px;height:18px;
+			border:1px solid #9966ff;vertical-align:middle;
+			margin-left:4px;cursor:pointer;transition:transform 0.2s;
+			position:relative;overflow:hidden;
+		}
+		.lang-flag:hover{transform:scale(1.2)}
+		.flag-jp-mini{background:#fff}
+		.flag-jp-mini::after{
+			content:"";position:absolute;width:8px;height:8px;border-radius:50%;
+			background:#bc002d;top:50%;left:50%;transform:translate(-50%,-50%);
+		}
+		.flag-us-mini{
+			background:repeating-linear-gradient(180deg,#bf0a30 0px,#bf0a30 2px,#fff 2px,#fff 4px);
+		}
+		.flag-us-mini::before{
+			content:"";position:absolute;width:12px;height:10px;background:#002868;top:0;left:0;
+		}
+
+		.marquee-strip{
+			background:linear-gradient(90deg,#330066,#000066,#330066);
+			border-top:1px solid #6633cc;border-bottom:1px solid #6633cc;
+			padding:3px 0;overflow:hidden;
+		}
+		.marquee-inner{
+			display:inline-block;white-space:nowrap;
+			animation:marquee-scroll 18s linear infinite;
+			color:#ffff66;font-size:12px;
+		}
+		@keyframes marquee-scroll{0%{transform:translateX(780px)}100%{transform:translateX(-100%)}}
+		table.main-layout{width:100%;border-collapse:collapse}
+		td{vertical-align:top}
+		td.sidebar-left{
+			width:160px;background:linear-gradient(180deg,#110033,#0a0022);
+			border-right:2px groove #6633cc;padding:8px;
+		}
+		.side-box{
+			border:2px ridge #9966ff;background:linear-gradient(180deg,#1a0044,#0d0022);
+			margin-bottom:10px;padding:6px;
+		}
+		.side-box-title{
+			background:linear-gradient(90deg,#6600cc,#9933ff,#6600cc);
+			color:#fff;font-size:11px;font-weight:bold;text-align:center;
+			padding:3px;margin:-6px -6px 6px -6px;letter-spacing:2px;
+		}
+		.side-box ul{list-style:none;margin:0;padding:0}
+		.side-box li{padding:3px 0;border-bottom:1px dotted #333366;font-size:12px}
+		.side-box li:last-child{border-bottom:none}
+		.side-box li::before{content:"▶ ";color:#ff66cc;font-size:8px}
+		td.main-content{padding:12px;background:linear-gradient(180deg,#0a0022,#0d0033,#0a0022)}
+		.content-box{
+			border:2px ridge #6666cc;background:rgba(0,0,40,0.6);
+			margin-bottom:12px;padding:10px;
+		}
+		.content-box-title{
+			background:linear-gradient(90deg,#3300aa,#6633cc,#3300aa);
+			color:#ffccff;font-weight:bold;font-size:12px;
+			padding:4px 8px;margin:-10px -10px 10px -10px;
+			border-bottom:1px solid #9966ff;letter-spacing:1px;
+		}
+		td.sidebar-right{
+			width:140px;background:linear-gradient(180deg,#110033,#0a0022);
+			border-left:2px groove #6633cc;padding:8px;
+		}
+		.footer{
+			background:linear-gradient(180deg,#110033,#220055,#110033);
+			border-top:3px ridge #9966cc;text-align:center;
+			padding:8px;font-size:10px;color:#9999cc;
+		}
+		@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+		.blink{animation:blink 1s step-end infinite}
+		@keyframes rainbow{
+			0%{color:#ff0000}14%{color:#ff9900}28%{color:#ffff00}
+			42%{color:#00ff00}57%{color:#0099ff}71%{color:#6633ff}
+			85%{color:#ff00ff}100%{color:#ff0000}
+		}
+		.rainbow{animation:rainbow 3s linear infinite}
+		@keyframes sparkle{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.2)}}
+		.sparkle{animation:sparkle 1.5s ease-in-out infinite}
+		.sparkle2{animation:sparkle 1.5s ease-in-out 0.5s infinite}
+		@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+		.float{animation:float 2s ease-in-out infinite}
+		.counter-box{
+			font-family:"Courier New",monospace;background:#000;
+			border:2px inset #666;padding:3px 6px;display:inline-block;
+			font-size:14px;color:#00ff00;letter-spacing:2px;
+		}
+		.construction{
+			background:repeating-linear-gradient(45deg,#ffcc00,#ffcc00 10px,#000 10px,#000 20px);
+			padding:2px;
+		}
+		.construction-inner{
+			background:#000033;padding:4px 10px;text-align:center;font-size:11px;color:#ffcc00;
+		}
+		.guestbook-entry{
+			border:1px dotted #6633cc;padding:6px;margin:6px 0;
+			background:rgba(20,0,50,0.5);font-size:11px;
+		}
+		.guestbook-entry .gb-name{color:#ff99cc;font-weight:bold}
+		.guestbook-entry .gb-date{color:#666699;font-size:10px}
+		.retro-btn{
+			background:linear-gradient(180deg,#ddd,#999);border:2px outset #ccc;
+			color:#000;font-size:11px;padding:3px 10px;
+			font-family:"MS PGothic",sans-serif;cursor:pointer;
+		}
+		.retro-btn:active{border-style:inset}
+		input[type="text"],textarea{
+			background:#1a0033;border:2px inset #6633cc;color:#ffccff;
+			font-size:11px;padding:3px;font-family:"MS PGothic",sans-serif;
+		}
+		.mini-badge{
+			display:inline-block;width:88px;height:31px;line-height:31px;
+			font-size:9px;font-weight:bold;text-align:center;
+			border:1px solid #666;margin:2px;color:#fff;
+		}
+		.trail-star{
+			position:fixed;pointer-events:none;font-size:12px;
+			color:#ffcc00;z-index:9999;opacity:0;
+		}
+		.hr-fancy{
+			border:none;height:2px;
+			background:linear-gradient(90deg,transparent,#6633cc,#ff66cc,#6633cc,transparent);
+			margin:8px 0;
+		}
+		.small{font-size:11px}
+		.tiny{font-size:10px}
+		.center{text-align:center}
+		img{border:0}
+	</style>
+</head>
+<body>
+
+<div class="trail-star" id="t0">✦</div>
+<div class="trail-star" id="t1">✧</div>
+<div class="trail-star" id="t2">✦</div>
+<div class="trail-star" id="t3">✧</div>
+<div class="trail-star" id="t4">✦</div>
+<div class="trail-star" id="t5">✧</div>
+<div class="trail-star" id="t6">✦</div>
+<div class="trail-star" id="t7">✧</div>
+
+<div class="page-wrapper">
+
+	<!-- ============ TOP BANNER ============ -->
+	<div class="top-banner">
+		<div class="lang-switch">
+			<a href="dennou_kuukan_jp.html" class="lang-flag flag-jp-mini" title="日本語"></a>
+			<a href="dennou_kuukan_en.html" class="lang-flag flag-us-mini" title="English"></a>
+		</div>
+		<div class="star-line">★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★</div>
+		<h1>
+			<span class="sparkle">☆</span>
+			ネオ東京電脳空間
+			<span class="sparkle2">☆</span>
+		</h1>
+		<div class="subtitle">～ N E O &nbsp; T O K Y O &nbsp; C Y B E R S P A C E ～</div>
+		<div class="star-line">★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★</div>
+	</div>
+
+	<!-- ============ MARQUEE ============ -->
+	<div class="marquee-strip">
+		<div class="marquee-inner">
+			☆★☆ ようこそネオ東京電脳空間へ！ ☆★☆ このサイトは1999年の日本のウェブデザインをリスペクトして作られました ☆★☆ IE4.0以上推奨・解像度800x600 ☆★☆ MIDIは自動再生されます(嘘) ☆★☆ リンクフリーですがバナーを貼ってね ☆★☆ 最終更新：1999年12月24日 ☆★☆
+		</div>
+	</div>
+
+	<!-- ============ MAIN TABLE LAYOUT ============ -->
+	<table class="main-layout">
+		<tr>
+			<!-- ======== LEFT SIDEBAR ======== -->
+			<td class="sidebar-left">
+
+				<div class="side-box">
+					<div class="side-box-title">MENU</div>
+					<ul>
+						<li><a href="#top">トップページ</a></li>
+						<li><a href="#profile">プロフィール</a></li>
+						<li><a href="#diary">日記</a></li>
+						<li><a href="#gallery">ギャラリー</a></li>
+						<li><a href="#midi">MIDI部屋</a></li>
+						<li><a href="#links">リンク集</a></li>
+						<li><a href="#bbs">掲示板(BBS)</a></li>
+						<li><a href="#guestbook">ゲストブック</a></li>
+						<li><a href="#mail">メール</a></li>
+					</ul>
+				</div>
+
+				<div class="side-box">
+					<div class="side-box-title">更新履歴</div>
+					<div class="tiny">
+						<span class="blink" style="color:#ff3333">NEW!</span> 12/24 - トップ更新<br>
+						12/20 - 日記追加<br>
+						12/15 - リンク追加<br>
+						12/10 - MIDI追加<br>
+						12/01 - サイト開設！
+					</div>
+				</div>
+
+				<div class="side-box center">
+					<div class="tiny" style="margin-bottom:4px;color:#cc99ff">あなたは</div>
+					<div class="counter-box">007491</div>
+					<div class="tiny" style="margin-top:4px;color:#cc99ff">人目の訪問者です</div>
+				</div>
+
+				<div class="side-box center">
+					<div class="tiny" style="color:#cc99ff;margin-bottom:4px">現在の時刻</div>
+					<div id="clock" style="font-family:monospace;color:#00ffcc;font-size:13px">00:00:00</div>
+				</div>
+
+				<div class="side-box center">
+					<div class="side-box-title">WEB RING</div>
+					<div class="tiny" style="margin:4px 0">
+						<a href="#">≪ 前</a> |
+						<a href="#">一覧</a> |
+						<a href="#">次 ≫</a>
+					</div>
+					<div class="tiny" style="color:#9966cc">日本アニメ同盟</div>
+				</div>
+
+			</td>
+
+			<!-- ======== MAIN CONTENT ======== -->
+			<td class="main-content">
+
+				<div class="content-box">
+					<div class="content-box-title">
+						<span class="sparkle">☆</span> ようこそ！ Welcome to 電脳空間!! <span class="sparkle2">☆</span>
+					</div>
+					<div class="center" style="margin-bottom:8px">
+						<span class="float" style="display:inline-block;font-size:20px">
+							<span class="rainbow">★ いらっしゃいませ ★</span>
+						</span>
+					</div>
+					<p class="small">
+						当ページに来てくださってありがとうございます！<br>
+						ここは<b style="color:#ff99ff">ネオ東京電脳空間</b>の個人ホームページです。<br>
+						アニメ、ゲーム、音楽、日記などをマイペースで更新しています。
+					</p>
+					<p class="small">
+						<span style="color:#ffcc00">●</span> 推奨環境：Internet Explorer 4.0以上 / Netscape Navigator 4.0以上<br>
+						<span style="color:#ffcc00">●</span> 解像度800×600以上推奨<br>
+						<span style="color:#ffcc00">●</span> フォントサイズ「中」で最適化されています<br>
+						<span style="color:#ffcc00">●</span> JavaScriptをONにしてください
+					</p>
+					<div class="hr-fancy"></div>
+					<div class="center tiny" style="color:#9999cc">
+						Since 1999.08.15 / Last Update: 1999.12.24
+					</div>
+				</div>
+
+				<div class="content-box" id="profile">
+					<div class="content-box-title">プロフィール ～ Profile ～</div>
+					<table style="width:100%">
+						<tr>
+							<td style="width:80px;text-align:center;padding:8px">
+								<div style="width:64px;height:64px;background:linear-gradient(135deg,#ff66cc,#6633ff);border:2px ridge #9966ff;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:28px">
+									(^_^)
+								</div>
+								<div class="tiny" style="margin-top:4px;color:#cc99ff">管理人</div>
+							</td>
+							<td class="small">
+								<b style="color:#ff99ff">HN：</b>ネオ (Neo)<br>
+								<b style="color:#ff99ff">年齢：</b>ひ・み・つ☆<br>
+								<b style="color:#ff99ff">趣味：</b>アニメ鑑賞、ゲーム、ネットサーフィン、MIDI制作<br>
+								<b style="color:#ff99ff">好きなアニメ：</b>エヴァンゲリオン、カウボーイビバップ、lain<br>
+								<b style="color:#ff99ff">好きなゲーム：</b>FF7、ゼルダの伝説 時のオカリナ<br>
+								<b style="color:#ff99ff">使用PC：</b>NEC PC-9821 / Windows 98<br>
+								<b style="color:#ff99ff">ブラウザ：</b>IE5.0<br>
+								<b style="color:#ff99ff">一言：</b>足跡残してね！(ゲストブックで)
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="content-box" id="diary">
+					<div class="content-box-title">日記 ～ Diary ～</div>
+					<div class="small">
+						<p><b style="color:#ffcc66">■ 1999/12/24 (金) 晴れ</b><br>
+						メリークリスマス！！今日はケーキを食べました。<br>
+						あと2000年問題がちょっと心配です…。PCのデータ、バックアップしなきゃ。<br>
+						皆さんも気をつけてくださいね。<span style="color:#ffcc00">Y2K</span>大丈夫かな…？</p>
+
+						<div class="hr-fancy"></div>
+
+						<p><b style="color:#ffcc66">■ 1999/12/20 (月) 曇り</b><br>
+						カウボーイビバップの最終回を見ました。<br>
+						<span style="color:#ff6666">※ネタバレ注意※</span><br>
+						…泣きました。スパイクー！！(T_T)<br>
+						See you, Space Cowboy...</p>
+
+						<div class="hr-fancy"></div>
+
+						<p><b style="color:#ffcc66">■ 1999/12/15 (水) 雨</b><br>
+						テレホーダイの時間になったのでネットサーフィンしてます。<br>
+						素敵なサイトを見つけたのでリンク集に追加しました！<br>
+						相互リンク募集中です。メールくださいね。</p>
+					</div>
+				</div>
+
+				<div class="content-box" id="gallery">
+					<div class="content-box-title">ギャラリー ～ Gallery ～</div>
+					<div class="construction">
+						<div class="construction-inner">
+							⚠ 工事中 ⚠ UNDER CONSTRUCTION ⚠<br>
+							<span class="blink">Coming Soon!!</span>
+						</div>
+					</div>
+					<p class="tiny center" style="margin-top:6px;color:#9966cc">
+						自作イラスト・ファンアートを公開予定です。お楽しみに！
+					</p>
+				</div>
+
+				<div class="content-box" id="midi">
+					<div class="content-box-title">MIDI部屋 ～ MIDI Room ～</div>
+					<div class="small">
+						<p>管理人が打ち込んだMIDIを公開しています。</p>
+						<table style="width:100%;font-size:11px">
+							<tr style="background:rgba(102,51,204,0.3)">
+								<td style="padding:3px 6px">♪</td>
+								<td style="padding:3px">残酷な天使のテーゼ</td>
+								<td style="padding:3px;color:#9999cc">3:58</td>
+								<td style="padding:3px"><a href="#">DL</a></td>
+							</tr>
+							<tr>
+								<td style="padding:3px 6px">♪</td>
+								<td style="padding:3px">Tank! (Cowboy Bebop OP)</td>
+								<td style="padding:3px;color:#9999cc">3:30</td>
+								<td style="padding:3px"><a href="#">DL</a></td>
+							</tr>
+							<tr style="background:rgba(102,51,204,0.3)">
+								<td style="padding:3px 6px">♪</td>
+								<td style="padding:3px">Duvet (Serial Experiments Lain)</td>
+								<td style="padding:3px;color:#9999cc">4:19</td>
+								<td style="padding:3px"><a href="#">DL</a></td>
+							</tr>
+							<tr>
+								<td style="padding:3px 6px">♪</td>
+								<td style="padding:3px">エアリスのテーマ (FF7)</td>
+								<td style="padding:3px;color:#9999cc">4:05</td>
+								<td style="padding:3px"><a href="#">DL</a></td>
+							</tr>
+						</table>
+						<p class="tiny" style="color:#9966cc">
+							※MIDIの二次配布はご遠慮ください。<br>
+							※音源はSC-88Proで最適化しています。
+						</p>
+					</div>
+				</div>
+
+				<div class="content-box" id="links">
+					<div class="content-box-title">リンク集 ～ Links ～</div>
+					<div class="small">
+						<p style="color:#cc99ff">☆ お友達のサイト ☆</p>
+						<ul style="margin:4px 0;padding-left:16px">
+							<li><a href="#">☆ミ 月影の館 ～TsukikageNoYakata～</a> <span class="tiny" style="color:#666699">… エヴァのファンサイト</span></li>
+							<li><a href="#">☆ミ Digital Butterfly</a> <span class="tiny" style="color:#666699">… CG＆イラストサイト</span></li>
+							<li><a href="#">☆ミ CAFE BEBOP</a> <span class="tiny" style="color:#666699">… ビバップファンページ</span></li>
+							<li><a href="#">☆ミ 電脳世界 ～Cyber World～</a> <span class="tiny" style="color:#666699">… PC改造＆Tips</span></li>
+						</ul>
+						<div class="hr-fancy"></div>
+						<p style="color:#cc99ff">☆ よく行くサイト ☆</p>
+						<ul style="margin:4px 0;padding-left:16px">
+							<li><a href="#">Yahoo! JAPAN</a></li>
+							<li><a href="#">Vector (ソフトウェア)</a></li>
+							<li><a href="#">窓の杜</a></li>
+							<li><a href="#">2ちゃんねる</a></li>
+						</ul>
+						<div class="hr-fancy"></div>
+						<p class="tiny" style="color:#ffcc00">
+							※ リンクフリーです！リンクの際はこちらのバナーをお使いください ↓
+						</p>
+						<div class="center" style="margin:8px 0">
+							<div class="mini-badge" style="background:linear-gradient(135deg,#330066,#660099)">
+								電脳空間<br><span style="font-size:7px">NEO TOKYO</span>
+							</div>
+						</div>
+						<div class="tiny center" style="color:#9966cc">
+							直リンク推奨：https://www.geocities.co.jp/Milkyway/9999/banner.gif
+						</div>
+					</div>
+				</div>
+
+				<div class="content-box" id="guestbook">
+					<div class="content-box-title">ゲストブック ～ Guestbook ～</div>
+					<div class="small" style="margin-bottom:8px;color:#cc99ff">
+						足跡を残していってくださいね！(^-^)/<br>
+						<span class="tiny" style="color:#ff6666">※荒らし・宣伝書き込みは削除します。</span>
+					</div>
+
+					<div class="guestbook-entry">
+						<span class="gb-name">☆ミ sakura_hime</span>
+						<span class="gb-date"> - 1999/12/23 23:45</span><br>
+						はじめまして！リンクから来ました。<br>
+						MIDIすごく良かったです！私もSC-88Pro使ってます。<br>
+						相互リンクお願いしたいです。メール送りますね(^_^)
+					</div>
+
+					<div class="guestbook-entry">
+						<span class="gb-name">☆ミ cyber_knight_99</span>
+						<span class="gb-date"> - 1999/12/22 21:12</span><br>
+						キリ番踏みました！7777ゲットー！<br>
+						記念カキコ。サイトかっこいいですね。
+					</div>
+
+					<div class="guestbook-entry">
+						<span class="gb-name">☆ミ moonlight_angel</span>
+						<span class="gb-date"> - 1999/12/20 19:30</span><br>
+						ビバップの感想に激しく同意…(T_T)<br>
+						うちのサイトにも遊びに来てくださいね♪
+					</div>
+
+					<div class="hr-fancy"></div>
+
+					<div style="margin-top:8px">
+						<table style="font-size:11px">
+							<tr>
+								<td style="padding:2px 6px 2px 0;color:#cc99ff">お名前：</td>
+								<td><input type="text" style="width:180px"></td>
+							</tr>
+							<tr>
+								<td style="padding:2px 6px 2px 0;color:#cc99ff;vertical-align:top">メッセージ：</td>
+								<td><textarea rows="3" style="width:280px"></textarea></td>
+							</tr>
+							<tr>
+								<td style="padding:2px 6px 2px 0;color:#cc99ff">URL：</td>
+								<td><input type="text" style="width:280px" value="http://"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td style="padding-top:4px">
+									<button class="retro-btn">書き込む</button>
+									<button class="retro-btn">リセット</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+			</td>
+
+			<!-- ======== RIGHT SIDEBAR ======== -->
+			<td class="sidebar-right">
+
+				<div class="side-box center">
+					<div class="side-box-title">BANNERS</div>
+					<div class="mini-badge" style="background:linear-gradient(135deg,#003399,#0066cc)">
+						Internet<br><span style="font-size:7px">Explorer</span>
+					</div>
+					<div class="mini-badge" style="background:linear-gradient(135deg,#006600,#009933)">
+						Netscape<br><span style="font-size:7px">Now!</span>
+					</div>
+					<div class="mini-badge" style="background:linear-gradient(135deg,#cc0000,#ff3333)">
+						GeoCities<br><span style="font-size:7px">ジオシティーズ</span>
+					</div>
+					<div class="mini-badge" style="background:linear-gradient(135deg,#333,#666)">
+						MIDI OK<br><span style="font-size:7px">♪音が出ます♪</span>
+					</div>
+					<div class="mini-badge" style="background:linear-gradient(135deg,#993300,#cc6600)">
+						Win98<br><span style="font-size:7px">対応</span>
+					</div>
+					<div class="mini-badge" style="background:linear-gradient(135deg,#660066,#990099)">
+						LINK<br><span style="font-size:7px">FREE!</span>
+					</div>
+				</div>
+
+				<div class="side-box">
+					<div class="side-box-title">今日の運勢</div>
+					<div class="center tiny">
+						<div style="font-size:20px;margin:4px 0" class="float">🌟</div>
+						<div style="color:#ffcc00;font-weight:bold">大吉！</div>
+						<div style="color:#cc99ff;margin-top:4px">
+							素敵な出会いが<br>あるかも…？
+						</div>
+					</div>
+				</div>
+
+				<div class="side-box">
+					<div class="side-box-title">お願い</div>
+					<div class="tiny" style="color:#cc99ff">
+						・素材の直リンク禁止<br>
+						・無断転載禁止<br>
+						・リンクはトップへ<br>
+						・右クリック禁止<br>
+						　(嘘です笑)
+					</div>
+				</div>
+
+				<div class="side-box center">
+					<div class="side-box-title">COUNTDOWN</div>
+					<div class="tiny" style="color:#ffcc00">
+						2000年まであと<br>
+						<span style="font-size:18px;font-weight:bold;color:#ff6666" class="blink">7</span>
+						<span style="color:#cc99ff">日！</span>
+					</div>
+					<div class="tiny" style="color:#9966cc;margin-top:4px">Y2K怖い…</div>
+				</div>
+
+			</td>
+		</tr>
+	</table>
+
+	<!-- ============ FOOTER ============ -->
+	<div class="footer">
+		<div class="star-line">☆ ─── ☆ ─── ☆ ─── ☆ ─── ☆ ─── ☆ ─── ☆</div>
+		<div style="margin:4px 0">
+			Copyright &copy; 1999 ネオ東京電脳空間. All Rights Reserved.<br>
+			このサイトはリンクフリーです。バナーはご自由にお持ち帰りください。
+		</div>
+		<div style="margin:4px 0">
+			<a href="#">トップへ戻る</a> |
+			<a href="#guestbook">ゲストブック</a> |
+			<a href="mailto:neo@geocities.co.jp">メール</a>
+		</div>
+		<div style="margin-top:4px">
+			Powered by <b>GeoCities Japan</b> / Since 1999.08.15
+		</div>
+		<div class="star-line">☆ ─── ☆ ─── ☆ ─── ☆ ─── ☆ ─── ☆ ─── ☆</div>
+	</div>
+
+</div>
+
+<script>
+function updateClock(){
+	var now=new Date();
+	var h=String(now.getHours()).padStart(2,'0');
+	var m=String(now.getMinutes()).padStart(2,'0');
+	var s=String(now.getSeconds()).padStart(2,'0');
+	var el=document.getElementById('clock');
+	if(el) el.textContent=h+':'+m+':'+s;
+}
+setInterval(updateClock,1000);
+updateClock();
+
+(function(){
+	var stars=[];
+	for(var i=0;i<8;i++) stars.push(document.getElementById('t'+i));
+	var positions=[];
+	for(var i=0;i<8;i++) positions.push({x:0,y:0});
+	var mx=0,my=0;
+	document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY});
+	function animate(){
+		var px=mx,py=my;
+		for(var i=0;i<stars.length;i++){
+			var s=stars[i],p=positions[i];
+			p.x+=(px-p.x)*0.3;p.y+=(py-p.y)*0.3;
+			s.style.left=p.x+'px';s.style.top=p.y+'px';
+			s.style.opacity=1-(i*0.12);s.style.fontSize=(12-i)+'px';
+			var c=['#ffcc00','#ff99ff','#99ccff','#ffcc00','#ff99ff','#99ccff','#ffcc00','#ff99ff'];
+			s.style.color=c[i];px=p.x;py=p.y;
+		}
+		requestAnimationFrame(animate);
+	}
+	animate();
+})();
+</script>
+
+</body>
+</html>
